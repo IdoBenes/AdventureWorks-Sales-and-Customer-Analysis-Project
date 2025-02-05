@@ -1,8 +1,7 @@
----------------------------------------PROJECT 2 IDO BENES
+---------------------------------------AdventureWorks-Sales-and-Customer-Analysis-Project
 
 ---1  
 -- Question: Annual Sales & Revenue Growth: Calculate the annual sales total and linear revenue for each year. Find the growth rate of linear revenue compared to the previous year.
-
 SELECT YEAR(SO.OrderDate) AS 'YEAR' -- Extract the year from the order date
 ,SUM(IL.ExtendedPrice - IL.TaxAmount) AS 'IncomePerYear' -- Calculate the total income per year
 ,COUNT(DISTINCT MONTH(OrderDate)) AS 'NumberOfDistinctMonths' -- Count the number of distinct months in the order date
@@ -45,7 +44,6 @@ WHERE DNR <= 5 -- Filter to show only the top 5 customers
 
 ---3 
 -- Question: Top Products by Profit: Identify the products with the highest total profit, based on sales, and rank them.
-
 SELECT TOP 10 SI.StockItemID, SI.StockItemName -- Select the top 10 stock items by ID and name
 ,SUM(INL.ExtendedPrice - INL.TaxAmount) AS TotalProfit -- Calculate the total profit for each stock item
 FROM Warehouse.StockItems SI JOIN SALES.InvoiceLines INL
@@ -110,9 +108,8 @@ SELECT CustomerName, City, StateProvince, Country, TotalSpend, DNR -- Select the
 FROM TBL
 WHERE DNR <= 5 -- Filter to show only the top 5 customers
 
-
 -------------------------------------------------------------------------
-
+        
 ---7 
 -- Question: Monthly Product Sales: Display the total sales per product each month, with an accumulated total for the year.
 GO
@@ -130,10 +127,8 @@ FROM SALES.Orders SO JOIN SALES.Invoices SI
 GROUP BY YEAR(SO.OrderDate), MONTH(SO.OrderDate), P.ProductName -- Group by year, month, and product name
 ORDER BY YEAR(SO.OrderDate), MONTH(SO.OrderDate), P.ProductName -- Order by year, month, and product name
 
-
 -------------------------------------------------------------------------
-
-
+        
 ---8 
 -- Question: Monthly Orders: Show the number of orders placed each month of the year.
 GO
@@ -144,9 +139,7 @@ FROM SALES.Orders
 GROUP BY YEAR(OrderDate), MONTH(OrderDate) -- Group by year and month
 ORDER BY YEAR(OrderDate), MONTH(OrderDate) -- Order by year and month
 
-
 -------------------------------------------------------------------------
-
 
 ---9 
 -- Question: Churn Risk Customers: Identify customers at risk of churn based on order patterns (last order time greater than twice the average order time).
